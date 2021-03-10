@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<style>
+  .container {
+    margin-top: 60px;
+    text-align: center;
+    margin-bottom: 0;
+  }
+  .alert-box {
+    max-width: 400px;
+    min-height: 150px;
+  }
+    .alert-icon {
+      padding-bottom: 20px;
+   }
+</style>
+<div class="container ">
+  <h2>Varify Your Account</h2>
+  {% if messages %}
+  {% for message in messages %}
+  <div class="alert alert-info">
+    {{message}}
+  </div>
+  {% endfor %}
+  {% endif %}
+  <div class='row'>
+    <div class="alert-box" style="float: none; margin: 0 auto;">
+      <div class="alert alert-success">
+        <div class="alert-icon text-center">
+          <i class="fa fa-check-square-o  fa-3x" aria-hidden="true"></i>
+        </div>
+        <div class="alert-message text-center">
+           We have sent a confirmation code to your gmail , please do check..
+        </div>
+      </div>
+    </div>
+  </div>
+  <form action="" method="POST">
+    {% csrf_token %}
+    <input type="text" name="code" id="" placeholder="Enter your code">
+    <br>
+    <br>
+    <button type="submit" class="btn btn-success btn-lg">Varify</button>
+    <br>
+    <br>
+    <!-- {{ code1}} -->
+    <!-- <h4>Didn't get code?? <a href="{% url 'resend' code1=code1 %}">Resend</a></h4> -->
+   
+  </form>
+  <br>
+</div>
+
+{% endblock %}

@@ -1,0 +1,178 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"> -->
+
+<link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.0/additional-methods.js"></script>
+<div id="contentContainer" class="container">
+  <div class="row">
+    <div id="realContent" class="col-xs-12">
+      <div class="row">
+        <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-xs-12 col-sm-offset-0">
+          <h1>Sign Up</h1>
+        </div>
+      </div>
+      <div class="row">
+        <section class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-xs-12 col-sm-offset-0">
+          <div class="well well-lg">
+            <div class="row">
+              <div class="col-sm-6 col-xs-12">
+                <div class="row">
+                  <div class="col-xs-12">
+                    <h3>Welcome</h3>
+                  </div>
+                </div>
+                <div class="row">
+                  <!-- Instructions -->
+                  <div class="col-xs-12">
+                    <p class="lead">Register now for <span class="text-success">FREE</span></p>
+                    <ul class="list-unstyled" style="line-height: 3; font-size: 1.4em; font-weight: 500;">
+                      <li><span class="fa fa-check text-success"></span> Join this site</li>
+                      <li><span class="fa fa-check text-success"></span>Do post your latest blogs </li>
+                      <li><span class="fa fa-check text-success"></span> Do best be on top</li>
+                      <li><span class="fa fa-check text-success"></span> Enjoy the other's blogs</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- Registration Form -->
+              <div class="col-sm-6 col-xs-12">
+                <div class="row">
+                  <div class="col-xs-12">
+                    <form id="signupForm" method="POST" accept-charset="UTF-8" validate autocomplete="nope">
+                      {% csrf_token %}
+                      <div class="col-12 text-center">
+                        <h2>Register</h2>
+                        <hr>
+                      </div>
+                      <div class="col-12 text-center">
+                        {% if messages %}
+                        {% for message in messages %}
+                        <div class="alert alert-info">
+                            {{message}}
+                        </div>
+                        {% endfor %}
+                        {% endif %}
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="input-group">
+                            <span class="input-group-addon"><i class="icon-user icon-2x pr-5"></i></span>
+                            <input id="handle" class="form-control input-lg" placeholder="First Name" maxlength="100"
+                              type="text" name="firstname" autocomplete="off">
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="input-group">
+                            <span class="input-group-addon"><i class="icon-user icon-2x pr-5"></i></span>
+                            <input id="handle" class="form-control input-lg " placeholder="Last Name" maxlength="100"
+                              type="text" name="lastname" autocomplete="off">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-user-secret icon-2x pr-5 "></i></i></span>
+                        <input id="name" class="form-control input-lg" placeholder="Username" maxlength="100"
+                          type="text" name="username" autocomplete="off">
+                      </div>
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="icon-envelope icon-2x pr-5"></i></span>
+                        <input id="email" class="form-control input-lg  " placeholder="Email" maxlength="100"
+                          type="email" name="email" validate autocomplete="off">
+                      </div>
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="icon-asterisk icon-2x pr-5"></i></span>
+                        <input id="password" class="form-control input-lg" placeholder="Password" maxlength="60"
+                          type="password" name="password" autocomplete="off">
+                      </div>
+                      <div class="form-group">
+                        <div class="g-recaptcha" data-sitekey="6LdJRxETAAAAABZT0MUNO1r5at_-JuSGeAPTqIM6"></div>
+                      </div>
+                      <div class="form-group">
+                        <button type="submit" id="btn-signup" class="btn btn-block btn-primary btn-lg">Sign Up</button>
+                      </div>
+                    </form>
+                    <div class="form-group">
+                      <div class="topCushion">Already a member? <a href="{% url 'login' %}">Login</a></div>
+                    </div>
+                  </div>
+                  <!-- /.col-xs-12 -->
+                </div>
+                <!-- /.row -->
+              </div>
+              <!-- /.col-sm-6 col-xs-12 -->
+            </div>
+            <!-- /.row -->
+          </div>
+          <!-- /.well well-lg -->
+        </section>
+        <!-- /.col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-xs-12 col-sm-offset-0 -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /#realContent -->
+  </div>
+  <!-- /.row -->
+</div>
+<!-- /#contentContainer -->
+<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+  integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.slim.js"
+  integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+<script>
+
+  $('#signupForm').validate({
+    rules: {
+      name: {
+        minlength: 3,
+        maxlength: 50,
+        required: true,
+      },
+      handle: {
+        minlength: 6,
+        maxlength: 15,
+        required: true,
+        alphanumeric: true
+      },
+      email: {
+        required: true,
+        email: true
+      },
+      password: {
+        required: true,
+        minlength: 6,
+        maxlength: 15
+      },
+      password_confirmation: {
+        required: true,
+        equalTo: '#password'
+      }
+    },
+    highlight: function (element) {
+      $(element).closest('.input-group').addClass('has-error');
+    },
+    unhighlight: function (element) {
+      $(element).closest('.input-group').removeClass('has-error');
+    },
+    errorElement: 'span',
+    errorClass: 'help-block',
+    errorPlacement: function (error, element) {
+      if (element.parent('.input-group').length) {
+        error.insertAfter(element.parent());
+      } else {
+        error.insertAfter(element);
+      }
+    }
+  });
+
+</script>
+
+{% endblock %}

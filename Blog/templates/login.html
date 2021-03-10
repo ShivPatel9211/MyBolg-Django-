@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<style>
+    main .card {
+        background-color: #3475;
+      }
+      
+      body {
+        background: #fe8c00; /* fallback for old browsers */
+        background: -webkit-linear-gradient(
+          to right,
+          #f83600,
+          #fe8c00
+        ); /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(
+          to right,
+          #f83600,
+          #fe8c00
+        ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+      
+        color: white;
+      }
+      
+      h3 {
+        font-family: Times New Roman;
+        font-weight: bold;
+      }
+      hr {
+        border-bottom: solid white 1px;
+      }
+      
+      .btn {
+        background: #0f2027; /* fallback for old browsers */
+        background: -webkit-linear-gradient(
+          to right,
+          #2c5364,
+          #203a43,
+          #0f2027
+        ); /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(
+          to right,
+          #2c5364,
+          #203a43,
+          #0f2027
+        ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+      }
+      
+      input {
+        background-color: #3475 !important;
+        color: white !important;
+      }
+      
+      ::placeholder {
+        color: white !important;
+      }
+      
+</style>
+<main class="container my-5">
+    <div class="row">
+      <section class="col-md-6 my-5 offset-md-3">
+  
+        <div class="card shadow p-5">
+          <form method="POST">
+            {% csrf_token %}
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-danger">
+                {{message}}
+            </div>
+            {% endfor %}
+            {% endif %}
+            <h3 class="text-center text-uppercase mb-4">Login</h3>
+            <hr>
+  
+            <div class="form-group">
+              <label>Username</label>
+              <input type="text" placeholder="Email" class="form-control" name="username">
+            </div>
+  
+            <label for="Password">Password</label>
+            <div class="input-group mb-3">
+              <input type="password" name="password" id="password" class="form-control" placeholder="Enter Password" aria-label="Enter Password" aria-describedby="basic-addon2">
+              <div class="input-group-append">
+                <span class="input-group-text" id="basic-addon2"><i class="fa fa-eye" aria-hidden="true"></i>
+                </span>
+              </div>
+            </div>
+  
+            <button class="btn btn-block btn-secondary rounded-pill mt-3" type="submit">Login</button>
+  
+            <p class="mt-3 text-white">Don't have an Account ? <a href="{% url 'register' %}" class="text-white"> Create Here</a></p>
+  
+          </form>
+        </div>
+      </section>
+    </div>
+  </main>
+<script>
+    $(document).ready(function () {
+        $("#basic-addon2").click(function () {
+          let passwordField = $("#password");
+          let passwordFieldAttr = passwordField.attr("type");
+      
+          if (passwordFieldAttr == "password") {
+            passwordField.attr("type", "text");
+            $(this).html('<i class="fa fa-eye-slash" aria-hidden="true"></i>');
+          } else {
+            passwordField.attr("type", "password");
+            $(this).html('<i class="fa fa-eye" aria-hidden="true"></i>');
+          }
+        });
+      });
+      
+</script>
+{% endblock%}
