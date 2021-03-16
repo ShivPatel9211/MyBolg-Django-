@@ -11,5 +11,4 @@ urlpatterns = [
     path('logout/',views.logout_attemp,name='logout' ),
     path('about/',views.about,name='about' ),
     path('contact/',views.contact,name='contact' ),
-    # path('resend/<int:code1>',views.resend,name='resend' ),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

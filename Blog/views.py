@@ -12,11 +12,7 @@ code =0
 
 
 def index(request):
-    prof = Profile.objects.all()
-    context = {
-        'prof': prof
-    }
-    return render(request,'index.html', context)
+    return render(request,'index.html',)
     
 
 def register(request):
@@ -98,7 +94,7 @@ def verify(request):
 
 def sendMail(email , code):
     subject ='Your account need to be varified'
-    message = f'Hi !! paste the link to varify your account  '+  str(code)  
+    message = f'Hi !! Your configuration code is   '+  str(code)  
     email_from = settings.EMAIL_HOST_USER
     recpient_list = [email]
     send_mail(subject,message,email_from,recpient_list)
@@ -113,8 +109,3 @@ def about(request):
 
 def contact(request):
        return render(request, 'contact.html')
-
-
-# def resend(request , code1):
-#     print(code1)
-#     return render(request, 'mailsent.html')
