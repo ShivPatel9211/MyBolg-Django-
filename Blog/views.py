@@ -22,6 +22,7 @@ def register(request):
         username=request.POST['username']
         email=request.POST['email']
         password=request.POST['password']
+        image1=request.FILES['image1']
     
         if User.objects.filter(username=username).first():
             messages.success(request,"User of this username is already exist ")
@@ -36,7 +37,7 @@ def register(request):
         user_obj.save()
         global code 
         code = random.randint(2000, 9000)
-        profile_obj =Profile.objects.create(user=user_obj,code=code)
+        profile_obj =Profile.objects.create(user=user_obj,code=code , profile_img=image1)
         profile_obj.save()
         sendMail(email , code)
         return redirect('mailsent')

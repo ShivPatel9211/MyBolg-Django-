@@ -43,7 +43,7 @@
               <div class="col-sm-6 col-xs-12">
                 <div class="row">
                   <div class="col-xs-12">
-                    <form id="signupForm" method="POST" accept-charset="UTF-8" validate autocomplete="nope">
+                    <form id="signupForm" method="POST" accept-charset="UTF-8" validate autocomplete="nope" enctype="multipart/form-data">
                       {% csrf_token %}
                       <div class="col-12 text-center">
                         <h2>Register</h2>
@@ -53,7 +53,7 @@
                         {% if messages %}
                         {% for message in messages %}
                         <div class="alert alert-info">
-                            {{message}}
+                          {{message}}
                         </div>
                         {% endfor %}
                         {% endif %}
@@ -88,6 +88,10 @@
                         <span class="input-group-addon"><i class="icon-asterisk icon-2x pr-5"></i></span>
                         <input id="password" class="form-control input-lg" placeholder="Password" maxlength="60"
                           type="password" name="password" autocomplete="off">
+                      </div>
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-user-secret icon-2x pr-5 "></i></i></span>
+                        <input class="form-control input-lg" type="file" name="image1" >
                       </div>
                       <div class="form-group">
                         <div class="g-recaptcha" data-sitekey="6LdJRxETAAAAABZT0MUNO1r5at_-JuSGeAPTqIM6"></div>
