@@ -23,24 +23,28 @@ def register(request):
         email=request.POST['email']
         password=request.POST['password']
         image1=request.FILES['image1']
-    
-        if User.objects.filter(username=username).first():
-            messages.success(request,"User of this username is already exist ")
-            return redirect('register')
-        if User.objects.filter(email=email).first():
-            messages.success(request," This email id is already is used ")
-            return redirect('register')
 
-         
-        user_obj = User(first_name=firstname,last_name=lastname,username=username , email=email)
-        user_obj.set_password(password)
-        user_obj.save()
-        global code 
-        code = random.randint(2000, 9000)
-        profile_obj =Profile.objects.create(user=user_obj,code=code , profile_img=image1)
-        profile_obj.save()
-        sendMail(email , code)
-        return redirect('mailsent')
+        try:
+            if User.objects.filter(username=username).first():
+                messages.success(request,"User of this username is already exist ")
+                return redirect('register')
+            if User.objects.filter(email=email).first():
+                messages.success(request," This email id is already is used ")
+                return redirect('register')
+
+            
+            user_obj = User(first_name=firstname,last_name=lastname,username=username , email=email)
+            user_obj.set_password(password)
+            user_obj.save()
+            global code 
+            code = random.randint(2000, 9000)
+            profile_obj =Profile.objects.create(user=user_obj,code=code , profile_img=image1)
+            profile_obj.save()
+            sendMail(email , code)
+            return redirect('mailsent')
+        except Exception as e:
+            print(e)
+
 
        
 
