@@ -43,7 +43,8 @@ def register(request):
             sendMail(email , code)
             return redirect('mailsent')
         except Exception as e:
-            print(e)
+            messages.success(request, e)
+            return redirect('register')
 
 
        
