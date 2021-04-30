@@ -1,18 +1,21 @@
-from django.shortcuts import render ,redirect
+from django.shortcuts import render ,redirect ,HttpResponse
 from django.contrib.auth.models import User
-from .models import Profile
+from .models import Profile , Message ,Post ,Comment
 from django.contrib import messages
 import random
 from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib.auth import authenticate , login, logout 
-
+from django.core.paginator import Paginator ,EmptyPage , PageNotAnInteger
 
 code =0
 
 
 def index(request):
-    return render(request,'index.html',)
+    if request.user.is_authenticated:
+        return redirect ('userhome')
+    else:
+        return render(request,'index.html',)
     
 
 def register(request):
@@ -68,7 +71,7 @@ def login_attemp(request):
                     return redirect('login')
                 else:
                     login(request, user)
-                    return redirect('home')
+                    return redirect('userhome')
     
 
     return render(request,'login.html')
@@ -114,4 +117,82 @@ def about(request):
     return render(request, 'about.html')
 
 def contact(request):
-       return render(request, 'contact.html')
+    if request.method=='POST':
+        username= request.POST['name']
+        email= request.POST['email']
+        subject= request.POST['subject']
+        msg= request.POST['message']
+        try:
+            mesg_obj = Message(username=username,email=email,subject=subject,mesg=msg)
+            mesg_obj.save()
+            messages.success(request, 'Your message is sent')
+        except Exception as e :
+            messages.success(request, e)
+    return render(request, 'contact.html')
+
+def dopost(request):
+    if request.method=="POST":
+        title= request.POST['title']
+        image= request.FILES['image']
+        content= request.POST['content']
+        user = request.user
+        post = Post.objects.create(title=title,img =image,content = content , user=user)
+        post.save()
+        messages.success(request,'Your Blog is successfully posted')
+        return redirect('userhome')
+
+    return render(request , 'dopost.html')
+
+def userhome(request):
+    allpost = Paginator(Post.objects.all(),2)
+    page=request.GET.get("page")
+    try:
+        post=allpost.page(page)
+    except PageNotAnInteger:
+        post=allpost.page(1)
+    except EmptyPage:
+        post= allpost.page(allpost.num_pages)
+    context = {
+        'post':post
+    }
+    return render(request, 'userhome.html',context)
+
+def detailpage(request , id):
+    post = Post.objects.filter(id =id).first()
+    comment = Comment.objects.filter(post=post)
+    context ={
+        'post':post,
+        'comment':comment
+    }
+    return render(request,'detailpage.html',context)
+
+def comment(request):
+    if request.method=="POST":
+        comment =request.POST['comment']
+        sno = request.POST['sno']
+        post =Post.objects.get(id = sno)
+        user = request.user
+        comm = Comment.objects.create(comment=comment,user=user , post= post)
+        comm.save()
+        return redirect(f'/detailpage/{post.id}')
+
+def myblog(request ,id): 
+    post1 = Post.objects.filter(user=id)
+    allpost = Paginator(post1,2)
+    page=request.GET.get("page")
+    try:
+        post=allpost.page(page)
+    except PageNotAnInteger:
+        post=allpost.page(1)
+    except EmptyPage:
+        post= allpost.page(allpost.num_pages)
+
+    context = {
+        'post':post
+    }
+    return render(request, 'myblog.html',context)
+
+    
+
+        
+        

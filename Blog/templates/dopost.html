@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<style>
+  .headingb{
+    background-color: #e0d9d9;
+    text-transform: capitalize;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    height:auto;
+    
+  }
+  .responsive {
+    width: 100%;
+    height: auto;
+  }
+  label{
+    font-weight: bold;
+  }
+</style>
+<h1 class="headingb">Post Your Awesome Blog !!</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-sm-12 col-lg-6">
+      <!-- image -->
+<img class="responsive mt-5 mb-5" src="https://neilpatel.com/wp-content/uploads/2020/10/how-to-start-a-blog-featured-image.jpg" alt="image">
+    </div>
+    <div class="col-md-6 col-sm-12 col-lg-6 ">
+      <!-- form  -->
+      <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label for="title" class="form-label">Title</label>
+          <input type="text" class="form-control" id="title" placeholder="Enter the title of Your Post " name="title">
+        </div>
+        <div class="mb-3">
+          <label for="image" class="form-label">Choose Image for Your Post</label>
+          <input type="file" class="form-control" id="image" name="image">
+        </div>
+        <div class="mb-3">
+          <label for="content" class="form-label">Enter your content</label>
+          <textarea name="content" id="" cols="30" rows="7" class="form-control"></textarea>
+        </div>
+        
+        <button type="submit" class="btn btn-primary mb-3">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

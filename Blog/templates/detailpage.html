@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+
+<style>
+  .image {
+    height: auto;
+    width: auto;
+  }
+
+  .heading {
+    color: #666666;
+    text-align: center;
+  }
+
+  .detailBox {
+    border: 1px solid #bbb;
+    margin: 10px;
+  }
+
+  .titleBox {
+    background-color: #fdfdfd;
+    padding: 10px;
+  }
+
+  .titleBox label {
+    color: #444;
+    margin: 0;
+    display: inline-block;
+  }
+
+  .commentBox {
+    padding: 10px;
+    border-top: 1px dotted #bbb;
+  }
+
+  .commentBox .form-group:first-child,
+  .actionBox .form-group:first-child {
+    width: 80%;
+  }
+
+  .commentBox .form-group:nth-child(2),
+  .actionBox .form-group:nth-child(2) {
+    width: 18%;
+  }
+
+  .actionBox .form-group * {
+    width: 100%;
+  }
+
+  .taskDescription {
+    margin-top: 10px 0;
+  }
+
+  .commentList {
+    padding: 0;
+    list-style: none;
+    overflow: auto;
+  }
+
+  .commentList li {
+    margin: 0;
+    margin-top: 10px;
+  }
+
+  .commentList li>div {
+    display: table-cell;
+  }
+
+  .commenterImage {
+    width: 30px;
+    margin-right: 5px;
+    height: 100%;
+    float: left;
+  }
+
+  .commenterImage img {
+    width: 100%;
+    border-radius: 50%;
+  }
+
+  .commentText p {
+    margin: 0;
+  }
+
+  .sub-text {
+    color: #aaa;
+    font-family: verdana;
+    font-size: 11px;
+  }
+
+  .actionBox {
+    border-top: 1px dotted #bbb;
+    padding: 10px;
+  }
+</style>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 mb-2 mr-auto ml-auto">
+      <div class="card">
+        <img class="card-img-top image" src="{{post.img.url}}" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">{{post.title}}</h5>
+          <p class="card-text">{{post.content}}</p>
+        </div>
+        <div class="card-footer">
+          <!-- comment  -->
+          <div class="row">
+            <div class="col-12">
+              <div class="detailBo">
+                <div class="titleBox bg-primary">
+                  <label>Comment Box</label>
+                  <button type="button" class="close" aria-hidden="true">&times;</button>
+                </div>
+                <div class="actionBox">
+                  <ul class="commentList">
+                    {% for i in comment %}
+                    <li>
+                      <div class="commenterImage"><img src="{{i.user.profile.profile_img.url}}" /></div>
+                      <div class="commentText">
+                        <p class="">{{i.comment}}</p> <span class="date sub-text">{{i.created_on}}</span>
+                      </div>
+                    </li>
+                    {% endfor %}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <form method="POST" action="/comment">
+            {% csrf_token %}
+            <div class="row">
+              <div class="col-9">
+                <textarea name="comment" id="" class="form-control rounded-3 " rows="1" placeholder="Enter your comment here.."></textarea>
+                <input type="hidden" name="sno" value="{{post.id}}">
+              </div>
+              <div class="col-3">
+                <button type="submit" class="btn btn-primary"><i class="fa fa-comment" aria-hidden="true"></i> Comment</button>
+              </div>
+          </form>
+        </div>
+      </div>
+      <!-- comment  -->
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+{% endblock %}
