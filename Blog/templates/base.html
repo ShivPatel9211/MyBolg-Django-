@@ -14,6 +14,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <title>MyBlog</title>
+    <style>
+      @media(min-width:1300px){
+        .search{
+          width: 375px!important;
+        }
+      }
+    </style>
   </head>
 
   <body>
@@ -36,27 +43,40 @@
             </li>
 
             <li class="nav-item">
-              <a class="nav-link " href="{% url 'contact' %}" tabindex="-1" aria-disabled="true"><b><i class="fa fa-commenting-o"></i> Contact Us</b></a>
+              <a class="nav-link " href="{% url 'contact' %}" tabindex="-1" aria-disabled="true"><b><i
+                    class="fa fa-commenting-o"></i> Contact Us</b></a>
             </li>
             {% if request.user.is_authenticated %}
             <li class="nav-item">
               <a class="nav-link" href="{% url 'dopost' %}"><b><i class="fa fa-pencil-square"></i>Post Blog</b></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'myblog' request.user.id %}"><b><i class="fa fa-book"></i>My Blogs</b></a>
+              <a class="nav-link" href="{% url 'myblog' request.user.id %}"><b><i class="fa fa-book"></i>My
+                  Blogs</b></a>
             </li>
             {% endif %}
 
           </ul>
 
+          <ul class="navbar-nav ml-auto mr-auto ">
+            {% if request.user.is_authenticated %}
+            <form class="d-flex" method="GET" action="/search" enctype="multipart/form-data" >
+              {% csrf_token %}
+              <input class="form-control me-2 search" type="search" placeholder="Search" aria-label="Search"name='key'>
+              <button class="btn btn-outline-dark" type="submit"><i class="fa fa-search" aria-hidden="true"></i> Search</button>
+            </form>
+            {% endif %}
+          </ul>
           <ul class="navbar-nav ml-auto ">
             {% if not request.user.is_authenticated %}
             <li class="nav-litem">
-              <a class="nav-link " href="{% url 'register' %}" tabindex="-1" aria-disabled="true"><b><i class="fa fa-user-plus"></i>Sign Up</b></a>
+              <a class="nav-link " href="{% url 'register' %}" tabindex="-1" aria-disabled="true"><b><i
+                    class="fa fa-user-plus"></i>Sign Up</b></a>
 
             </li>
             <li class="nav-litem">
-              <a class="nav-link " href="{% url 'login' %}" tabindex="-1" aria-disabled="true"><b><i class="fa fa-sign-in" aria-hidden="true"></i>Login</b></a>
+              <a class="nav-link " href="{% url 'login' %}" tabindex="-1" aria-disabled="true"><b><i
+                    class="fa fa-sign-in" aria-hidden="true"></i>Login</b></a>
 
             </li>
             {% endif %}
@@ -67,14 +87,12 @@
             </li>
 
             <li class="nav-litem">
-              <a class="nav-link " href="{% url 'logout' %}" tabindex="-1" aria-disabled="true"><b><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</b></a>
+              <a class="nav-link " href="{% url 'logout' %}" tabindex="-1" aria-disabled="true"><b><i
+                    class="fa fa-sign-out" aria-hidden="true"></i>Logout</b></a>
 
             </li>
             {% endif %}
-
-
           </ul>
-
         </div>
       </div>
     </nav>
@@ -111,9 +129,9 @@
             </div>
           </div>
         </div>
-      </div> 
+      </div>
     </footer>
-    
+
 
 
   </body>

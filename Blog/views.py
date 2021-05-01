@@ -193,6 +193,19 @@ def myblog(request ,id):
     return render(request, 'myblog.html',context)
 
     
-
+def search(request):
+    if request.method=="GET":
+        key = request.GET['key']
+        if len(key) > 100:
+            post=[]
+        else :
+            title = Post.objects.filter(title__icontains = key )
+            content = Post.objects.filter(content__icontains = key )
+            post = title.union(content)
+            context={
+                'post':post,
+                'key':key
+            }
+            return render(request, 'search.html', context)
         
         

@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<style>
+    .image {
+        height: auto;
+        width: auto;
+    }
+    .pagination{
+        justify-content: center;
+    }
+</style>
+<div class="container">
+    <div class="row">
+        {% if post|length <= 0 %}
+        <h1>  Sorry <i style="color: brown;" class="fa fa-frown-o"></i> !!,Your serached result "{{key}}" is not found.. </h1>
+        {% else %}
+        {% for i in post %}
+        <div class="col-md-8 mb-2 mr-auto ml-auto">
+            <div class="card">
+                <img class="card-img-top image" src="{{i.img.url}}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">{{i.title}}</h5>
+                    <p class="card-text">{{i.content|truncatechars:200}}</p>
+                    <a href="{% url 'detailpage' i.id %}" class="btn btn-primary">Read More</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+    <div class="text-center">
+        {% if post.has_other_pages %}
+        <ul class="pagination  ">
+            {% if post.has_previous %}
+            <li class="mr-3 ml-3"><a href="?page={{ post.previous_page_number }}">
+                    Previous </a>
+            </li>
+            {% else %}
+            <li class="disabled mr-3 ml-3"><span>
+                   Previous </span>
+            </li>
+            {% endif %}
+            {% for i in post.paginator.page_range %}
+            {% if post.number == i %}
+            <li class="active"><span>{{i}} <span class="sr-only">(current)</span> </span></li>
+            {% else %}
+            <li class="mr-3 ml-3"><a href="?page={{i}}">{{i}}</a></li>
+            {% endif %}
+            {% endfor %}
+            {% if post.has_next %}
+            <li class="mr-3 ml-3"><a href="?page={{ post.next_page_number }}">Next</a></li>
+            {% else %}
+            <li class="disabled mr-3 ml-3"><span>
+                   Next </span>
+            </li>
+            {% endif %}
+        </ul>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

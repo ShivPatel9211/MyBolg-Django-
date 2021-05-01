@@ -15,5 +15,6 @@ urlpatterns = [
     path('userhome',views.userhome,name='userhome' ),
     path('myblog/<int:id>',views.myblog,name='myblog' ),
     path('comment',views.comment,name='comment' ),
+    path('search',views.search,name='search' ),
     path('detailpage/<int:id>',views.detailpage,name='detailpage' ),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
