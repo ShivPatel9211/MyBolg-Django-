@@ -17,6 +17,27 @@
       </div>
     </div>
 </div>
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header" style="background-color: rgb(134, 48, 48);">
+          <h5 class="modal-title" id="exampleModalLabel" >Login Required</h5>
+          <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" style="background-color: aquamarine;"> 
+          <p>Please do login to access the full content</p>
+          <p style="text-align: right;">Thankyou!!</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+           <a  class="btn btn-success" href="{% url 'login' %}">Go To Login Page</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- modol  -->
 <div class="container my-5 ">
     <div class="row d-flex justify-content-center">
         <div class="col-12">
@@ -29,170 +50,50 @@
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <div class="row">
+                            {% for j in post1 %}
                             <div class="col-12 col-md-6 col-xl-3 mb-4">
                                 <div class="card mr-3">
-                                    <img src="https://themesberg.s3.us-east-2.amazonaws.com/public/posts/bootstrap-themes-summer-sale.jpg"
-                                        class="card-img-top" alt="...">
+                                    <img src="{{j.img.url}}" style="width: auto; height:300px;"  class="card-img-top" alt="...">
                                     <div class="card-body">
-                                        <h5 class="card-title">35% discount for premium Bootstrap Themes, Templates, UI
-                                            Kits</h5>
-                                        <p class="card-text">We’re getting nearer to the end of summer and because we
-                                            know that this period can make a serious dent in your pocket..</p>
-                                        <a href="#" class="btn btn-primary">Read more</a>
+                                        <h5 class="card-title">{{j.title}}</h5>
+                                        <p class="card-text">{{j.content|truncatechars:150}}</p>
+                                        <a href="#" class="btn btn-primary"  data-toggle="modal" data-target="#exampleModal">Read more</a>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12 col-md-6 col-xl-3 mb-4">
-                                <div class="card mr-3">
-                                    <img src="https://themesberg.s3.us-east-2.amazonaws.com/public/posts/gpt-3-tailwind-css-code-generator.jpg"
-                                        class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title">We built an OpenAI powered Tailwind CSS code generator
-                                            using GPT-3</h5>
-                                        <p class="card-text">A couple of days ago we got access to the OpenAI’s Beta API
-                                            platform and I had the occasion to play around with it...</p>
-                                        <a href="#" class="btn btn-primary">Read more</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6 col-xl-3 mb-4">
-                                <div class="card mr-3">
-                                    <img src="https://themesberg.s3.us-east-2.amazonaws.com/public/posts/bootstrap-5-tutorial/bootstrap-5-tutorial.jpg"
-                                        class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Bootstrap 5 tutorial: learn how to get started without
-                                            jQuery</h5>
-                                        <p class="card-text">We’re getting nearer to the end of summer and because we
-                                            know that this period can make a serious dent in your pocket..</p>
-                                        <a href="#" class="btn btn-primary">Read more</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6 col-xl-3 mb-4">
-                                <div class="card mr-3">
-                                    <img src="https://themesberg.s3.us-east-2.amazonaws.com/public/posts/angular-10/angular-10-officially-released-dropping-ie-9-10.jpg"
-                                        class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Angular 10 officially released deprecating support for IE
-                                            9 and 10</h5>
-                                        <p class="card-text">If you’ve been using Angular for your web projects I’m glad
-                                            to let you know that following this major update to version...</p>
-                                        <a href="#" class="btn btn-primary">Read more</a>
-                                    </div>
-                                </div>
-                            </div>
+                            {% endfor %}
                         </div>
                     </div>
                     <div class="carousel-item">
                         <div class="row">
+                            {% for k in post2 %}
                             <div class="col-12 col-md-6 col-xl-3 mb-4">
                                 <div class="card mr-3">
-                                    <img src="https://themesberg.s3.us-east-2.amazonaws.com/public/posts/bootstrap-themes-summer-sale.jpg"
-                                        class="card-img-top" alt="...">
+                                    <img src="{{k.img.url}}" style="width: auto; height:300px;"  class="card-img-top" alt="...">
                                     <div class="card-body">
-                                        <h5 class="card-title">35% discount for premium Bootstrap Themes, Templates, UI
-                                            Kits</h5>
-                                        <p class="card-text">We’re getting nearer to the end of summer and because we
-                                            know that this period can make a serious dent in your pocket..</p>
-                                        <a href="#" class="btn btn-primary">Read more</a>
+                                        <h5 class="card-title">{{k.title}}</h5>
+                                        <p class="card-text">{{k.content|truncatechars:150}}</p>
+                                        <a href="#" class="btn btn-primary"  data-toggle="modal" data-target="#exampleModal">Read more</a>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12 col-md-6 col-xl-3 mb-4">
-                                <div class="card mr-3">
-                                    <img src="https://themesberg.s3.us-east-2.amazonaws.com/public/posts/gpt-3-tailwind-css-code-generator.jpg"
-                                        class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title">We built an OpenAI powered Tailwind CSS code generator
-                                            using GPT-3</h5>
-                                        <p class="card-text">A couple of days ago we got access to the OpenAI’s Beta API
-                                            platform and I had the occasion to play around with it...</p>
-                                        <a href="#" class="btn btn-primary">Read more</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6 col-xl-3 mb-4">
-                                <div class="card mr-3">
-                                    <img src="https://themesberg.s3.us-east-2.amazonaws.com/public/posts/bootstrap-5-tutorial/bootstrap-5-tutorial.jpg"
-                                        class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Bootstrap 5 tutorial: learn how to get started without
-                                            jQuery</h5>
-                                        <p class="card-text">We’re getting nearer to the end of summer and because we
-                                            know that this period can make a serious dent in your pocket..</p>
-                                        <a href="#" class="btn btn-primary">Read more</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6 col-xl-3 mb-4">
-                                <div class="card mr-3">
-                                    <img src="https://themesberg.s3.us-east-2.amazonaws.com/public/posts/angular-10/angular-10-officially-released-dropping-ie-9-10.jpg"
-                                        class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Angular 10 officially released deprecating support for IE
-                                            9 and 10</h5>
-                                        <p class="card-text">If you’ve been using Angular for your web projects I’m glad
-                                            to let you know that following this major update to version...</p>
-                                        <a href="#" class="btn btn-primary">Read more</a>
-                                    </div>
-                                </div>
-                            </div>
+                            {% endfor %}
                         </div>
                     </div>
                     <div class="carousel-item">
                         <div class="row">
+                            {% for k in post3 %}
                             <div class="col-12 col-md-6 col-xl-3 mb-4">
                                 <div class="card mr-3">
-                                    <img src="https://themesberg.s3.us-east-2.amazonaws.com/public/posts/bootstrap-themes-summer-sale.jpg"
-                                        class="card-img-top" alt="...">
+                                    <img src="{{k.img.url}}" style="width: auto; height:300px;"  class="card-img-top" alt="...">
                                     <div class="card-body">
-                                        <h5 class="card-title">35% discount for premium Bootstrap Themes, Templates, UI
-                                            Kits</h5>
-                                        <p class="card-text">We’re getting nearer to the end of summer and because we
-                                            know that this period can make a serious dent in your pocket..</p>
-                                        <a href="#" class="btn btn-primary">Read more</a>
+                                        <h5 class="card-title">{{k.title}}</h5>
+                                        <p class="card-text">{{k.content|truncatechars:150}}</p>
+                                        <a href="#" class="btn btn-primary"  data-toggle="modal" data-target="#exampleModal">Read more</a>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12 col-md-6 col-xl-3 mb-4">
-                                <div class="card mr-3">
-                                    <img src="https://themesberg.s3.us-east-2.amazonaws.com/public/posts/gpt-3-tailwind-css-code-generator.jpg"
-                                        class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title">We built an OpenAI powered Tailwind CSS code generator
-                                            using GPT-3</h5>
-                                        <p class="card-text">A couple of days ago we got access to the OpenAI’s Beta API
-                                            platform and I had the occasion to play around with it...</p>
-                                        <a href="#" class="btn btn-primary">Read more</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6 col-xl-3 mb-4">
-                                <div class="card mr-3">
-                                    <img src="https://themesberg.s3.us-east-2.amazonaws.com/public/posts/bootstrap-5-tutorial/bootstrap-5-tutorial.jpg"
-                                        class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Bootstrap 5 tutorial: learn how to get started without
-                                            jQuery</h5>
-                                        <p class="card-text">We’re getting nearer to the end of summer and because we
-                                            know that this period can make a serious dent in your pocket..</p>
-                                        <a href="#" class="btn btn-primary">Read more</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6 col-xl-3 mb-4">
-                                <div class="card mr-3">
-                                    <img src="https://themesberg.s3.us-east-2.amazonaws.com/public/posts/angular-10/angular-10-officially-released-dropping-ie-9-10.jpg"
-                                        class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Angular 10 officially released deprecating support for IE
-                                            9 and 10</h5>
-                                        <p class="card-text">If you’ve been using Angular for your web projects I’m glad
-                                            to let you know that following this major update to version...</p>
-                                        <a href="#" class="btn btn-primary">Read more</a>
-                                    </div>
-                                </div>
-                            </div>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>

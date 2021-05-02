@@ -12,10 +12,24 @@ code =0
 
 
 def index(request):
+       
     if request.user.is_authenticated:
         return redirect ('userhome')
     else:
-        return render(request,'index.html',)
+        post = Post.objects.all()
+        post1 = []
+        post1.extend(post[0:4])
+
+        post2 = []
+        post2.extend(post[4:8])
+        post3 = []
+        post3.extend(post[8:12])
+        context = {
+            'post1':post1,
+            'post2':post2,
+            'post3':post3
+        }
+        return render(request,'index.html',context)
     
 
 def register(request):
