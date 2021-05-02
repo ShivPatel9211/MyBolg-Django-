@@ -94,10 +94,11 @@
     padding: 10px;
 
   }
-  @media(max-width:400px){
-  .comment{
-    margin-left: -22px!important;
-  }
+
+  @media(max-width:400px) {
+    .comment {
+      margin-left: -22px !important;
+    }
   }
 </style>
 <div class="container">
@@ -112,9 +113,17 @@
         <div class="card-footer">
           <p> Posted By :{{post.user.first_name}} {{post.user.last_name}} </p>
           <small class="text-muted">Posted on : {{post.date}}</small>
-          <!-- comment  -->
+          <hr>
           <div class="row">
             <div class="col-12">
+              <div class="fb-like" data-href="http://127.0.0.1:8000/detailpage/{{post.id}}" data-width="" data-layout="button_count" data-action="like" data-size="large" data-share="true"></div>
+            </div>
+          </div>
+          <hr>
+          <!-- comment  -->
+          <div class="row">
+            <div class="fb-comments" data-href="http://127.0.0.1:8000/detailpage/{{post.id}}" data-width="" data-numposts="5"></div>
+            <!-- <div class="col-12">
               <div class="detailBo">
                 <div class="titleBox bg-primary">
                   <label>Comment Box</label>
@@ -133,19 +142,21 @@
                   </ul>
                 </div>
               </div>
-            </div>
+            </div> -->
           </div>
-          <form method="POST" action="/comment">
+          <!-- <form method="POST" action="/comment">
             {% csrf_token %}
             <div class="row">
               <div class="col-9">
-                <textarea name="comment" id="" class="form-control rounded-3 " rows="1" placeholder="Enter your comment here.."></textarea>
+                <textarea name="comment" id="" class="form-control rounded-3 " rows="1"
+                  placeholder="Enter your comment here.."></textarea>
                 <input type="hidden" name="sno" value="{{post.id}}">
               </div>
               <div class="col-3 mt-1 comment">
-                <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-comment" aria-hidden="true"></i>Comment</button>
+                <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-comment"
+                    aria-hidden="true"></i>Comment</button>
               </div>
-          </form>
+          </form> -->
         </div>
       </div>
       <!-- comment  -->
