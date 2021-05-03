@@ -20,8 +20,15 @@ class Message(models.Model):
     def __str__(self):
         return self.username
 
+
+class Categorise(models.Model):
+    name = models.CharField(max_length=100, default="Computer Engineering")
+    def __str__(self):
+        return self.name
+
 class Post(models.Model):
     user = models.ForeignKey(User , on_delete=models.CASCADE)
+    caty = models.ForeignKey(Categorise,on_delete=models.CASCADE, null=True)
     img =models.ImageField(upload_to='post_img',blank= True)
     title = models.CharField(max_length=200)
     content = models.TextField()
@@ -43,5 +50,7 @@ class Comment(models.Model):
 
     def __str__(self):
         return 'Comment {} by {}'.format(self.comment, self.user)
+
+
 
 

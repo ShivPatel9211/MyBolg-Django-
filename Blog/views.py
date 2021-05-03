@@ -1,6 +1,6 @@
-from django.shortcuts import render ,redirect ,HttpResponse
+from django.shortcuts import render ,redirect ,HttpResponse,get_object_or_404
 from django.contrib.auth.models import User
-from .models import Profile , Message ,Post ,Comment
+from .models import Profile , Message ,Post ,Comment,Categorise
 from django.contrib import messages
 import random
 from django.core.mail import send_mail
@@ -145,19 +145,31 @@ def contact(request):
     return render(request, 'contact.html')
 
 def dopost(request):
+    caty = Categorise.objects.all()
+    context = {
+        'caty':caty
+    }
     if request.method=="POST":
         title= request.POST['title']
+        caty1= request.POST['caty']
         image= request.FILES['image']
         content= request.POST['content']
         user = request.user
-        post = Post.objects.create(title=title,img =image,content = content , user=user)
+        category = get_object_or_404(Categorise, name=caty1)
+        print(category)
+        # caty1 =Categorise.objects.get(name=caty1)
+       
+        # caty1= caty1.id
+        # print(caty1)
+        post = Post.objects.create(title=title,caty_id=category.id,img =image,content = content , user=user)
         post.save()
         messages.success(request,'Your Blog is successfully posted')
         return redirect('userhome')
 
-    return render(request , 'dopost.html')
+    return render(request , 'dopost.html' , context)
 
 def userhome(request):
+    caty =Categorise.objects.all()
     allpost = Paginator(Post.objects.all(),2)
     page=request.GET.get("page")
     try:
@@ -167,8 +179,9 @@ def userhome(request):
     except EmptyPage:
         post= allpost.page(allpost.num_pages)
     context = {
-        'post':post
-    }
+        'post':post,
+        'caty':caty
+     }
     return render(request, 'userhome.html',context)
 
 def detailpage(request , id):
