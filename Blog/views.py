@@ -156,12 +156,12 @@ def dopost(request):
         content= request.POST['content']
         user = request.user
         category = get_object_or_404(Categorise, name=caty1)
-        print(category)
+        # print(category)
         # caty1 =Categorise.objects.get(name=caty1)
        
         # caty1= caty1.id
         # print(caty1)
-        post = Post.objects.create(title=title,caty_id=category.id,img =image,content = content , user=user)
+        post = Post.objects.create(title=title,caty=category,img =image,content = content , user=user)
         post.save()
         messages.success(request,'Your Blog is successfully posted')
         return redirect('userhome')
