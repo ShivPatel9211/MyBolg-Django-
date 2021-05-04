@@ -14,6 +14,7 @@ urlpatterns = [
     path('dopost',views.dopost,name='dopost' ),
     path('userhome',views.userhome,name='userhome' ),
     path('myblog/<int:id>',views.myblog,name='myblog' ),
+    path('category/<int:id>',views.category,name='category'),
     path('comment',views.comment,name='comment' ),
     path('search',views.search,name='search' ),
     path('detailpage/<int:id>',views.detailpage,name='detailpage' ),
