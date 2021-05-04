@@ -10,95 +10,193 @@
     .pagination {
         justify-content: center;
     }
-    ul{
-        list-style:none;
-      }
-      .side-nav-categories {
-          padding: 0px;
-          position: relative;
-          margin-top: 0px;
-          padding-bottom: 0px;
-          background-color: #fff;
-          border-width: 1px;
-          border-style: solid;
-          border-color: #f5f5f5 #eee #d5d5d5 #eee;
-          box-shadow: 0 5px 0 rgba(200,200,200,.2);
-          margin-bottom: 30px;
-          width: 250px;
-          margin: auto;
-          top: 100px;
-      }
-      
-      .title {
-          color: #fff;
-          font-size: 16px;
-          font-weight: bold;
-          margin-bottom: 0px;
-          padding: 12px 25px 10px 25px;
-          position: relative;
-          display: inline-block;
-          font-family: 'Montserrat', sans-serif;
-          letter-spacing: 0.5px;
-          text-transform: uppercase;
-          background: #ed6663;
-          margin-top: 0px;
-          margin-left: -10px;
-      }
-      
-      .title:before {
-          content: '\f0c9';
-          font-family: FontAwesome;
-      }
-      
-      .title:after {
-          content: "";
-          height: 1px;
-          width: 1px;
-          border-style: solid;
-          border-width: 5px;
-          position: absolute;
-          bottom: -10px;
-          left: 0;
-          border-color: #d95451 #d95451 transparent transparent;
-      }
-      
-      ul#category-tabs {
-          list-style: none;
-          padding: 0;
-          margin: 0;
-          padding: 0;
-      }
-      
-      ul#category-tabs li {
-          display: block;
-          position: relative;
-          margin: 0;
-          border-bottom: 1px #ececec solid;
-          padding: 10px 18px;
-      }
-     
-      
-      ul#category-tabs li a {
-          color: #333;
-          font-weight: 700;
-          margin-bottom: 0;
-          font-size: 12px;
-      }
-      
-      ul#category-tabs li a i {
-          top: 12px;
-          right: 18px;
-          position: absolute;
-          cursor: pointer;
-          width: 16px;
-          height: 16px;
-          padding: 2px;
-          color: #ed6663;
-      }
+
+    ul {
+        list-style: none;
+    }
+
+    .side-nav-categories {
+        padding: 0px;
+        position: relative;
+        margin-top: 0px;
+        padding-bottom: 0px;
+        background-color: #fff;
+        border-width: 1px;
+        border-style: solid;
+        border-color: #f5f5f5 #eee #d5d5d5 #eee;
+        box-shadow: 0 5px 0 rgba(200, 200, 200, .2);
+        margin-bottom: 30px;
+        width: 250px;
+        margin: auto;
+        top: 45px;
+    }
+
+    .title {
+        color: #fff;
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 0px;
+        padding: 12px 25px 10px 25px;
+        position: relative;
+        display: inline-block;
+        font-family: 'Montserrat', sans-serif;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        background: #ed6663;
+        margin-top: 0px;
+        margin-left: -10px;
+    }
+
+    .title:before {
+        content: '\f0c9';
+        font-family: FontAwesome;
+    }
+
+    .title:after {
+        content: "";
+        height: 1px;
+        width: 1px;
+        border-style: solid;
+        border-width: 5px;
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        border-color: #d95451 #d95451 transparent transparent;
+    }
+
+    ul#category-tabs {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        padding: 0;
+    }
+
+    ul#category-tabs li {
+        display: block;
+        position: relative;
+        margin: 0;
+        border-bottom: 1px #ececec solid;
+        padding: 10px 18px;
+    }
+
+
+    ul#category-tabs li a {
+        color: #333;
+        font-weight: 700;
+        margin-bottom: 0;
+        font-size: 12px;
+    }
+
+    ul#category-tabs li a i {
+        top: 12px;
+        right: 18px;
+        position: absolute;
+        cursor: pointer;
+        width: 16px;
+        height: 16px;
+        padding: 2px;
+        color: #ed6663;
+    }
+ 
+    body {
+        margin-top: 40px;
+    }
+
+    ul,
+    li {
+        list-style: none;
+    }
+
+    h5 {
+        margin: 0;
+
+    }
+
+    h3 {
+        color: #2996bd;
+        margin: 10px 0px 15px;
+        padding-bottom: 10px;
+        padding-left: 10px;
+        border-left: 5px solid #32aae1;
+    }
+
+    .sidebar.widget {
+        margin-top: 70px;
+        background: #f2f2f2;
+        border: 1px solid #ddd;
+        padding: 10px 20px;
+    }
+
+    .sidebar.widget ul {
+        margin: 0px;
+        padding: 0;
+        overflow: hidden;
+    }
+
+    .sidebar.widget ul li {
+        overflow: hidden;
+        font-size: 14px;
+        margin-bottom: 20px;
+        border-bottom: 1px dashed #ddd;
+        padding-bottom: 20px
+    }
+
+    .sidebar-thumb {
+        float: left;
+        overflow: hidden;
+        margin-right: 15px;
+    }
+
+    .sidebar-thumb img {
+        background: #fff;
+        border: 1px dashed #e0e0e0;
+        padding: 6px;
+        height: 75px;
+        width: 75px;
+
+        -webkit-border-radius: 100px;
+        -moz-border-radius: 100px;
+        border-radius: 100px;
+    }
+
+    .sidebar-content h5 {
+        font-size: 16px;
+        cursor: pointer;
+        line-height: 24px;
+    }
+
+    .sidebar-content h5 a:hover {
+        color: #2996bd;
+    }
+
+    .sidebar-content h5 a {
+        color: #202020;
+        outline: 0 none;
+        text-decoration: none;
+        font-weight: bold
+    }
+
+    .sidebar-meta {
+        margin-top: 10px;
+    }
+
+    .sidebar-meta span {
+        color: #2e2e2e;
+    }
+
+    .sidebar-meta span.time {
+        margin-right: 10px;
+    }
+
+    .sidebar-meta span i {
+        color: #2996bd
+    }
+
+   
 </style>
 <div class="container">
     <div class="row">
-        <div class="col-md-8 mb-2 mr-auto ml-auto">
+        <div class="col-md-8 col-sm-8 mb-2 mr-auto ml-auto">
             {% for i in post %}
             <div class="card">
                 <img class="card-img-top image" src="{{i.img.url}}" alt="Card image cap">
@@ -110,7 +208,7 @@
             </div>
             {% endfor %}
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 col-sm-4">
             <div class="side-nav-categories">
                 <div class="title"><strong>Category</strong></div>
                 {% for i in caty %}
@@ -118,8 +216,31 @@
                     <li><a href="{% url 'category' i.id %}" class="main-category">{{i.name}}</a>
                     </li>
                 </ul>
-                {% endfor  %}
-                </div>
+                {% endfor %}
+            </div>
+            <!-- recent post  -->
+            <div class="sidebar widget">
+                <h3>Recent Post</h3>
+                <ul>
+                    {% for i in recentpost %}
+                    <li>
+                        <div class="sidebar-thumb">
+                            <img class="animated rollIn"
+                                src="{{i.img.url}}"
+                                alt="" />
+                        </div>
+                        <div class="sidebar-content">
+                            <h5 class="animated bounceInRight"><a href="{% url 'detailpage' i.id %}">{{i.title}}</a></h5>
+                        </div>
+                        <div class="sidebar-meta">
+                            <span class="time"><i class="fa fa-clock-o"></i>{{i.date}}</span>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <!-- recent post  -->
+
         </div>
     </div>
     <div class="text-center">

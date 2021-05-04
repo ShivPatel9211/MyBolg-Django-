@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from .models import Profile , Message ,Post ,Comment,Categorise
 from django.contrib import messages
 import random
+from django.db.models import Q 
 from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib.auth import authenticate , login, logout
@@ -16,7 +17,7 @@ def index(request):
     if request.user.is_authenticated:
         return redirect ('userhome')
     else:
-        post = Post.objects.all()
+        post = Post.objects.all().order_by('-date')
         post1 = []
         post1.extend(post[0:4])
 
@@ -165,7 +166,10 @@ def dopost(request):
 
 def userhome(request):
     caty =Categorise.objects.all()
-    allpost = Paginator(Post.objects.all(),2)
+    post = Post.objects.all().order_by('-date')
+    recentpost = []
+    recentpost.extend(post[0:5])
+    allpost = Paginator(post,2)
     page=request.GET.get("page")
     try:
         post=allpost.page(page)
@@ -175,7 +179,8 @@ def userhome(request):
         post= allpost.page(allpost.num_pages)
     context = {
         'post':post,
-        'caty':caty
+        'caty':caty,
+        'recentpost':recentpost,
      }
     return render(request, 'userhome.html',context)
 
@@ -199,7 +204,11 @@ def comment(request):
         return redirect(f'/detailpage/{post.id}')
 
 def myblog(request ,id):
-    post1 = Post.objects.filter(user=id)
+    post1 = Post.objects.filter(user=id).order_by('-date')
+    # caty =[]
+    # for i in post1:
+    #     caty.append(i.caty)
+    # caty =Categorise.objects.filter(id=post1.caty)
     allpost = Paginator(post1,2)
     page=request.GET.get("page")
     try:
@@ -210,7 +219,8 @@ def myblog(request ,id):
         post= allpost.page(allpost.num_pages)
 
     context = {
-        'post':post
+        'post':post,
+        # 'caty':caty
     }
     return render(request, 'myblog.html',context)
 
@@ -218,22 +228,23 @@ def myblog(request ,id):
 def search(request):
     if request.method=="GET":
         key = request.GET['key']
-        if len(key) > 100:
-            post=[]
-        else :
-            title = Post.objects.filter(title__icontains = key )
-            content = Post.objects.filter(content__icontains = key )
-            post = title.union(content)
-            context={
+        post = Post.objects.filter(Q(title__icontains=key) | Q(content__icontains=key))
+        context={
                 'post':post,
                 'key':key
             }
+<<<<<<< HEAD
             return render(request, 'search.html', context)
 
+=======
+        return render(request, 'search.html', context)
+>>>>>>> ef71626ad05cfbea4af2ef4ebd8b11887ce83e24
 
 def category(request,id):
     caty =Categorise.objects.all()
-    post1= Post.objects.filter(caty=id)
+    post1= Post.objects.filter(caty=id).order_by('-date')
+    recentpost = []
+    recentpost.extend(post1[0:5])
     allpost = Paginator(post1,2)
     page=request.GET.get("page")
     try:
@@ -244,7 +255,15 @@ def category(request,id):
         post= allpost.page(allpost.num_pages)
     context = {
         'post':post,
-        'caty':caty
+        'caty':caty,
+        'recentpost':recentpost
      }
     return render(request, 'category.html',context)
 
+<<<<<<< HEAD
+=======
+def deletepost(request,id):
+    post = Post.objects.filter(id=id)
+    post.delete()
+    return redirect('userhome')
+>>>>>>> ef71626ad05cfbea4af2ef4ebd8b11887ce83e24

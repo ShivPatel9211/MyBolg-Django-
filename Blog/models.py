@@ -34,6 +34,9 @@ class Post(models.Model):
     content = models.TextField()
     date = models.DateTimeField(auto_now_add=True,blank=True)
 
+    class Meta:
+        ordering = ['date']
+
     def __str__(self):
         return self.title
 
