@@ -156,23 +156,7 @@ def dopost(request):
         content= request.POST['content']
         user = request.user
         category = get_object_or_404(Categorise, name=caty1)
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-        #print(category)
-=======
-        # print(category)
->>>>>>> 5a7e8e8e614350ec5b15551d9013d4c92744559c
-        # caty1 =Categorise.objects.get(name=caty1)
-
-        # caty1= caty1.id
-        # print(caty1)
-<<<<<<< HEAD
-        post = Post.objects.create(title=title,caty=category.id,img =image,content = content , user=user)
-=======
->>>>>>> 397bcbb631f777fa1c29cd208007e061f0a70622
         post = Post.objects.create(title=title,caty=category,img =image,content = content , user=user)
->>>>>>> 5a7e8e8e614350ec5b15551d9013d4c92744559c
         post.save()
         messages.success(request,'Your Blog is successfully posted')
         return redirect('userhome')
@@ -245,9 +229,7 @@ def search(request):
                 'key':key
             }
             return render(request, 'search.html', context)
-<<<<<<< HEAD
-        
-        
+
 def category(request,id):
     caty =Categorise.objects.all()
     post1= Post.objects.filter(caty=id)
@@ -264,8 +246,4 @@ def category(request,id):
         'caty':caty
      }
     return render(request, 'category.html',context)
-    
-=======
 
-
->>>>>>> 397bcbb631f777fa1c29cd208007e061f0a70622
