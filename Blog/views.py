@@ -235,6 +235,7 @@ def search(request):
             }
         return render(request, 'search.html', context)
 
+
 def category(request,id):
     caty =Categorise.objects.all()
     post1= Post.objects.filter(caty=id).order_by('-date')
@@ -254,6 +255,7 @@ def category(request,id):
         'recentpost':recentpost
      }
     return render(request, 'category.html',context)
+
 
 def deletepost(request,id):
     post = Post.objects.filter(id=id)
