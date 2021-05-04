@@ -5,14 +5,14 @@ from django.contrib import messages
 import random
 from django.core.mail import send_mail
 from django.conf import settings
-from django.contrib.auth import authenticate , login, logout 
+from django.contrib.auth import authenticate , login, logout
 from django.core.paginator import Paginator ,EmptyPage , PageNotAnInteger
 
 code =0
 
 
 def index(request):
-       
+
     if request.user.is_authenticated:
         return redirect ('userhome')
     else:
@@ -30,7 +30,7 @@ def index(request):
             'post3':post3
         }
         return render(request,'index.html',context)
-    
+
 
 def register(request):
     if request.method=='POST':
@@ -49,11 +49,11 @@ def register(request):
                 messages.success(request," This email id is already is used ")
                 return redirect('register')
 
-            
+
             user_obj = User(first_name=firstname,last_name=lastname,username=username , email=email)
             user_obj.set_password(password)
             user_obj.save()
-            global code 
+            global code
             code = random.randint(2000, 9000)
             profile_obj =Profile.objects.create(user=user_obj,code=code , profile_img=image1)
             profile_obj.save()
@@ -64,7 +64,7 @@ def register(request):
             return redirect('register')
 
 
-       
+
 
     return render(request,'register.html')
 
@@ -86,7 +86,7 @@ def login_attemp(request):
                 else:
                     login(request, user)
                     return redirect('userhome')
-    
+
 
     return render(request,'login.html')
 
@@ -95,11 +95,11 @@ def verify(request):
     global code
     if request.method == "POST":
         code1=request.POST['code']
-       
+
 
         # print("this is orginal code " + str(code))
         # print("this is optained code " + code1)
-    
+
         if str(code) == code1:
             profile_obj =Profile.objects.filter(code=code).first()
             profile_obj.is_varified=True
@@ -117,7 +117,7 @@ def verify(request):
 
 def sendMail(email , code):
     subject ='Your account need to be varified'
-    message = f'Hi !! Your configuration code is   '+  str(code)  
+    message = f'Hi !! Your configuration code is   '+  str(code)
     email_from = settings.EMAIL_HOST_USER
     recpient_list = [email]
     send_mail(subject,message,email_from,recpient_list)
@@ -156,12 +156,12 @@ def dopost(request):
         content= request.POST['content']
         user = request.user
         category = get_object_or_404(Categorise, name=caty1)
-        print(category)
+        #print(category)
         # caty1 =Categorise.objects.get(name=caty1)
-       
+
         # caty1= caty1.id
         # print(caty1)
-        post = Post.objects.create(title=title,caty_id=category.id,img =image,content = content , user=user)
+        post = Post.objects.create(title=title,caty=category.id,img =image,content = content , user=user)
         post.save()
         messages.success(request,'Your Blog is successfully posted')
         return redirect('userhome')
@@ -203,7 +203,7 @@ def comment(request):
         comm.save()
         return redirect(f'/detailpage/{post.id}')
 
-def myblog(request ,id): 
+def myblog(request ,id):
     post1 = Post.objects.filter(user=id)
     allpost = Paginator(post1,2)
     page=request.GET.get("page")
@@ -219,7 +219,7 @@ def myblog(request ,id):
     }
     return render(request, 'myblog.html',context)
 
-    
+
 def search(request):
     if request.method=="GET":
         key = request.GET['key']
@@ -234,5 +234,5 @@ def search(request):
                 'key':key
             }
             return render(request, 'search.html', context)
-        
-        
+
+
