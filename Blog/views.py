@@ -156,11 +156,6 @@ def dopost(request):
         content= request.POST['content']
         user = request.user
         category = get_object_or_404(Categorise, name=caty1)
-        # print(category)
-        # caty1 =Categorise.objects.get(name=caty1)
-       
-        # caty1= caty1.id
-        # print(caty1)
         post = Post.objects.create(title=title,caty=category,img =image,content = content , user=user)
         post.save()
         messages.success(request,'Your Blog is successfully posted')
@@ -236,3 +231,20 @@ def search(request):
             return render(request, 'search.html', context)
         
         
+def category(request,id):
+    caty =Categorise.objects.all()
+    post1= Post.objects.filter(caty=id)
+    allpost = Paginator(post1,2)
+    page=request.GET.get("page")
+    try:
+        post=allpost.page(page)
+    except PageNotAnInteger:
+        post=allpost.page(1)
+    except EmptyPage:
+        post= allpost.page(allpost.num_pages)
+    context = {
+        'post':post,
+        'caty':caty
+     }
+    return render(request, 'category.html',context)
+    
