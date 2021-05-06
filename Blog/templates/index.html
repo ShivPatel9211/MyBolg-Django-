@@ -19,22 +19,29 @@
 </div>
   <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header" style="background-color: rgb(134, 48, 48);">
-          <h5 class="modal-title" id="exampleModalLabel" >Login Required</h5>
-          <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body" style="background-color: aquamarine;"> 
-          <p>Please do login to access the full content</p>
-          <p style="text-align: right;">Thankyou!!</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-           <a  class="btn btn-success" href="{% url 'login' %}">Go To Login Page</a>
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content">
+          <div class="row">
+            <div class="col-8 pt-2 text-danger">
+              <p class="pl-2"><strong>Login Required</strong></p>
+            </div>
+            <div class="col-4 text-right pt-2">
+              <button type="button" class="btn-close " data-dismiss="modal" aria-label="Close"></button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <p class="ml-3">Your have to login to access full content</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 text-right mt-1">
+              <button type="button" class="btn btn-dark btn-sm" data-dismiss="modal">Cancel</button>
+              <a class="btn btn-success btn-sm" href="{% url 'login'%}">Login</a>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
   </div>
 
 <!-- modol  -->

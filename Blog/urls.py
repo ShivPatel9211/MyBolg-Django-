@@ -15,6 +15,7 @@ urlpatterns = [
     path('userhome',views.userhome,name='userhome' ),
     path('myblog/<int:id>',views.myblog,name='myblog' ),
     path('deletepost/<int:id>',views.deletepost,name='deletepost' ),
+    path('update/<int:id>',views.update,name='update' ),
     path('category/<int:id>',views.category,name='category'),
     path('comment',views.comment,name='comment' ),
     path('search',views.search,name='search' ),

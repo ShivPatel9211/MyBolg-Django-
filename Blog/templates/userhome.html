@@ -97,7 +97,7 @@
         padding: 2px;
         color: #ed6663;
     }
- 
+
     body {
         margin-top: 40px;
     }
@@ -191,18 +191,21 @@
     .sidebar-meta span i {
         color: #2996bd
     }
-
-   
 </style>
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-sm-8 mb-2 mr-auto ml-auto">
             {% for i in post %}
-            <div class="card">
+            <div class="card mt-2">
                 <img class="card-img-top image" src="{{i.img.url}}" alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title">{{i.title}}</h5>
-                    <p class="card-text">{{i.content|truncatechars:200}}</p>
+
+                    <p class="card-text">
+                        {% autoescape off %}
+                        {{i.content|truncatechars_html:200}}
+                        {% endautoescape %}
+                    </p>
                     <a href="{% url 'detailpage' i.id %}" class="btn btn-primary">Read More</a>
                 </div>
             </div>
@@ -225,12 +228,11 @@
                     {% for i in recentpost %}
                     <li>
                         <div class="sidebar-thumb">
-                            <img class="animated rollIn"
-                                src="{{i.img.url}}"
-                                alt="" />
+                            <img class="animated rollIn" src="{{i.img.url}}" alt="" />
                         </div>
                         <div class="sidebar-content">
-                            <h5 class="animated bounceInRight"><a href="{% url 'detailpage' i.id %}">{{i.title}}</a></h5>
+                            <h5 class="animated bounceInRight"><a href="{% url 'detailpage' i.id %}">{{i.title}}</a>
+                            </h5>
                         </div>
                         <div class="sidebar-meta">
                             <span class="time"><i class="fa fa-clock-o"></i>{{i.date}}</span>

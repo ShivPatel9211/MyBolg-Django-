@@ -205,10 +205,8 @@ def comment(request):
 
 def myblog(request ,id):
     post1 = Post.objects.filter(user=id).order_by('-date')
-    # caty =[]
-    # for i in post1:
-    #     caty.append(i.caty)
-    # caty =Categorise.objects.filter(id=post1.caty)
+    recentpost = []
+    recentpost.extend(post1[0:8])
     allpost = Paginator(post1,2)
     page=request.GET.get("page")
     try:
@@ -220,7 +218,7 @@ def myblog(request ,id):
 
     context = {
         'post':post,
-        # 'caty':caty
+        'recentpost':recentpost
     }
     return render(request, 'myblog.html',context)
 
@@ -256,7 +254,36 @@ def category(request,id):
      }
     return render(request, 'category.html',context)
 
+<<<<<<< HEAD
 def deletepost(request,id):
     post = Post.objects.filter(id=id)
     post.delete()
     return redirect('userhome')
+=======
+
+def deletepost(request,id):
+    post = Post.objects.filter(id=id)
+    post.delete()
+    return redirect(f'/myblog/{post.user.id}')
+
+def update(request, id ):
+    caty = Categorise.objects.all()
+    post = Post.objects.filter(id=id).first()
+    if request.method=="POST":
+        title= request.POST['title']
+        caty1= request.POST['caty']
+        content= request.POST['content']
+        caty1= get_object_or_404(Categorise, name=caty1)
+        post.title=title
+        post.caty=caty1
+        post.content=content
+        post.save()
+        messages.success(request,'Your Blog is successfully updated')
+        return redirect(f'/myblog/{post.user.id}')
+
+    context ={
+        'post':post,
+        'caty':caty
+    }
+    return render(request, 'update.html', context)
+>>>>>>> 1078ebf0dae350d3b0ac7369f99ed7852d17e142

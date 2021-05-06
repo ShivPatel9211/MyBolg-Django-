@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from tinymce.models import HTMLField
 
 # Create your models here.
 class Profile(models.Model):
@@ -31,7 +32,7 @@ class Post(models.Model):
     caty = models.ForeignKey(Categorise,on_delete=models.CASCADE, null=True)
     img =models.ImageField(upload_to='post_img',blank= True)
     title = models.CharField(max_length=200)
-    content = models.TextField()
+    content = HTMLField()
     date = models.DateTimeField(auto_now_add=True,blank=True)
 
     class Meta:

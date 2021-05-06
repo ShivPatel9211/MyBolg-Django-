@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<style>
+  .headingb {
+    background-color: #e0d9d9;
+    text-transform: capitalize;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    height: auto;
+
+  }
+
+  label {
+    font-weight: bold;
+  }
+</style>
+<h1 class="headingb">Update Blog !!</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <!-- form  -->
+      <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label for="title" class="form-label">Title</label>
+          <input type="text" class="form-control" id="title" value="{{post.title}}" name="title">
+        </div>
+        <div class="mb-3">
+          <label for="disabledSelect" class="form-label">Catagories</label>
+          <!-- <p> <b> Currently: </b>{{post.caty}}</p> -->
+          <select id="disabledSelect" class="form-select" name="caty">
+            {% for i in caty %}
+             {% if i.id == post.caty.id %}
+            <option selected value="{{i.name}}" >{{i.name}}</option>
+            {% else %}
+            <option value="{{i.name}}" >{{i.name}}</option>
+           {% endif %}
+            {% endfor %}
+          </select>
+        </div>
+        <!-- <div class="mb-3">
+          <label for="image" class="form-label">Post Image</label>
+          <p><b> Currently: </b><a href="{{ post.img.url }}">{{post.img.url}}</a></p>
+          <input type="file" class="form-control" id="image" name="image" accept="image/*">
+        </div> -->
+        <input type="hidden" name="" id="inp" value="{{post.content}}">
+        <div class="mb-3">
+          <label for="content" class="form-label">Enter your content</label>
+          <textarea name="content" id="content" cols="30" rows="20" class="form-control tinymce"></textarea>
+        </div>
+        <script type="text/javascript">
+         var a =document.getElementById("inp").value;
+          document.getElementById("content").value=a;
+        </script>
+        <button type="submit" class="btn btn-primary mb-3">Update</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
