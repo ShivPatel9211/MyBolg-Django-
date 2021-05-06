@@ -199,7 +199,11 @@
                 <img class="card-img-top image" src="{{i.img.url}}" alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title">{{i.title}}</h5>
-                    <p class="card-text">{{i.content|truncatechars:200}}</p>
+                    <p class="card-text"> 
+                        {% autoescape off %}
+                        {{i.content|truncatechars_html:200}}
+                        {% endautoescape %}
+                    </p>
                     <a href="{% url 'detailpage' i.id %}" class="btn btn-primary">Read More</a>
                 </div>
             </div>

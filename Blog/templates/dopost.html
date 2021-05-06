@@ -24,12 +24,7 @@
 <h1 class="headingb">Post Your Awesome Blog !!</h1>
 <div class="container">
   <div class="row">
-    <div class="col-md-6 col-sm-12 col-lg-6">
-      <!-- image -->
-      <img class="responsive mt-5 mb-5"
-        src="https://neilpatel.com/wp-content/uploads/2020/10/how-to-start-a-blog-featured-image.jpg" alt="image">
-    </div>
-    <div class="col-md-6 col-sm-12 col-lg-6 ">
+    <div class="col-md-12 col-sm-12 col-lg-12 ">
       <!-- form  -->
       <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
@@ -51,10 +46,10 @@
         </div>
         <div class="mb-3">
           <label for="content" class="form-label">Enter your content</label>
-          <textarea name="content" id="" cols="30" rows="5" class="form-control"></textarea>
+          <textarea name="content" id="" cols="30" rows="5" class="form-control tinymce"></textarea>
         </div>
 
-        <button type="submit" class="btn btn-primary mb-3">Submit</button>
+        <button type="submit" class="btn btn-primary mb-3">Post</button>
       </form>
     </div>
   </div>

@@ -108,22 +108,20 @@
         <img class="card-img-top image" src="{{post.img.url}}" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title">{{post.title}}</h5>
-          <p class="card-text">{{post.content}}</p>
+          <p class="card-text">
+            {% autoescape off %}
+            {{post.content}}
+            {% endautoescape %}
+          </p>
         </div>
         <div class="card-footer">
           <p> Posted By :{{post.user.first_name}} {{post.user.last_name}} </p>
           <small class="text-muted">Posted on : {{post.date}}</small>
           <hr>
           <div class="row">
-            <div class="col-4">
+            <div class="col-12">
               <div class="fb-like" data-href="http://127.0.0.1:8000/detailpage/{{post.id}}" data-width=""
                 data-layout="standard" data-action="like" data-size="large" data-share="true"></div>
-            </div>
-            <div class="col-8 text-right">
-              <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#staticBackdrop">
-                Delete
-              </button>
-              <a class="btn btn-success btn-sm" href="">Update</a>
             </div>
           </div>
           <hr>
@@ -173,37 +171,4 @@
 </div>
 </div>
 </div>
-
-
-<!-- model  -->
-<!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
-  aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-sm">
-    <div class="modal-content">
-      <div class="row">
-        <div class="col-8 pt-2 text-danger">
-          <p class="pl-2"><strong>Delete Alert</strong></p>
-        </div>
-        <div class="col-4 text-right pt-2">
-          <button type="button" class="btn-close " data-dismiss="modal" aria-label="Close"></button>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-12">
-          <p class="ml-3">Are your sure want to delete ?</p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-12 text-right mt-1">
-          <button type="button" class="btn btn-success btn-sm" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-danger btn-sm" href="{% url 'deletepost' post.id %}">Delete</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- model  -->
-
 {% endblock %}
