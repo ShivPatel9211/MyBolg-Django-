@@ -254,13 +254,6 @@ def category(request,id):
      }
     return render(request, 'category.html',context)
 
-<<<<<<< HEAD
-def deletepost(request,id):
-    post = Post.objects.filter(id=id)
-    post.delete()
-    return redirect('userhome')
-=======
-
 def deletepost(request,id):
     post = Post.objects.filter(id=id)
     post.delete()
@@ -286,4 +279,3 @@ def update(request, id ):
         'caty':caty
     }
     return render(request, 'update.html', context)
->>>>>>> 1078ebf0dae350d3b0ac7369f99ed7852d17e142
