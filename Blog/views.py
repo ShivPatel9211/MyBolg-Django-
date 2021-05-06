@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from .models import Profile , Message ,Post ,Comment,Categorise
 from django.contrib import messages
 import random
-from django.db.models import Q 
+from django.db.models import Q
 from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib.auth import authenticate , login, logout
@@ -233,12 +233,8 @@ def search(request):
                 'post':post,
                 'key':key
             }
-<<<<<<< HEAD
-            return render(request, 'search.html', context)
-
-=======
         return render(request, 'search.html', context)
->>>>>>> ef71626ad05cfbea4af2ef4ebd8b11887ce83e24
+
 
 def category(request,id):
     caty =Categorise.objects.all()
@@ -260,10 +256,7 @@ def category(request,id):
      }
     return render(request, 'category.html',context)
 
-<<<<<<< HEAD
-=======
 def deletepost(request,id):
     post = Post.objects.filter(id=id)
     post.delete()
     return redirect('userhome')
->>>>>>> ef71626ad05cfbea4af2ef4ebd8b11887ce83e24
