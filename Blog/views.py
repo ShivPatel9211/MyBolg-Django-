@@ -159,7 +159,7 @@ def dopost(request):
         category = get_object_or_404(Categorise, name=caty1)
         post = Post.objects.create(title=title,caty=category,img =image,content = content , user=user)
         post.save()
-        messages.success(request,'Your Blog is successfully posted')
+        # messages.success(request,'Your Blog is successfully posted')
         return redirect('userhome')
 
     return render(request , 'dopost.html' , context)
@@ -254,13 +254,6 @@ def category(request,id):
      }
     return render(request, 'category.html',context)
 
-<<<<<<< HEAD
-def deletepost(request,id):
-    post = Post.objects.filter(id=id)
-    post.delete()
-    return redirect('userhome')
-=======
-
 def deletepost(request,id):
     post = Post.objects.filter(id=id)
     post.delete()
@@ -278,7 +271,7 @@ def update(request, id ):
         post.caty=caty1
         post.content=content
         post.save()
-        messages.success(request,'Your Blog is successfully updated')
+        # messages.success(request,'Your Blog is successfully updated')
         return redirect(f'/myblog/{post.user.id}')
 
     context ={
@@ -286,4 +279,3 @@ def update(request, id ):
         'caty':caty
     }
     return render(request, 'update.html', context)
->>>>>>> 1078ebf0dae350d3b0ac7369f99ed7852d17e142
