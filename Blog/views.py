@@ -159,7 +159,7 @@ def dopost(request):
         category = get_object_or_404(Categorise, name=caty1)
         post = Post.objects.create(title=title,caty=category,img =image,content = content , user=user)
         post.save()
-        messages.success(request,'Your Blog is successfully posted')
+        # messages.success(request,'Your Blog is successfully posted')
         return redirect('userhome')
 
     return render(request , 'dopost.html' , context)
@@ -271,7 +271,7 @@ def update(request, id ):
         post.caty=caty1
         post.content=content
         post.save()
-        messages.success(request,'Your Blog is successfully updated')
+        # messages.success(request,'Your Blog is successfully updated')
         return redirect(f'/myblog/{post.user.id}')
 
     context ={
